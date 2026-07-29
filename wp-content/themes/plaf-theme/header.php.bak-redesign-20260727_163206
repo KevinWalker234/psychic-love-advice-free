@@ -1,0 +1,26 @@
+<?php if ( ! defined( 'ABSPATH' ) ) exit; ?>
+<!DOCTYPE html>
+<html <?php language_attributes(); ?>>
+<head>
+<meta charset="<?php bloginfo( 'charset' ); ?>">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<?php wp_head(); ?>
+</head>
+<body <?php body_class(); ?>>
+<?php wp_body_open(); ?>
+<div class="plaf-mobile-overlay" id="plafMobileOverlay" onclick="plafCloseMobile()"></div>
+<nav class="mobile-nav" id="plafMobileNav">
+<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'nav-menu', 'fallback_cb' => 'plaf_fallback_menu', 'depth' => 1 ) ); ?>
+</nav>
+<header class="nav" id="plafHeader">
+<div class="container" style="display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto;">
+<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="nav-brand">
+<?php if ( has_custom_logo() ) : the_custom_logo(); else : echo 'Psychic Love Advice'; endif; ?>
+</a>
+<div class="nav-desktop" style="display:flex;gap:4px;align-items:center;">
+<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'items_wrap' => '<ul class="nav-menu">%3$s</ul>', 'fallback_cb' => 'plaf_fallback_menu', 'depth' => 1 ) ); ?>
+</div>
+<button class="mobile-menu-btn" onclick="plafToggleMobile()" aria-label="Toggle menu">&#9776;</button>
+</div>
+</header>
+<main>

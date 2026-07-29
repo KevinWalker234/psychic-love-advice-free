@@ -1,0 +1,67 @@
+<?php if ( ! defined( 'ABSPATH' ) ) exit; ?>
+<!DOCTYPE html>
+<html <?php language_attributes(); ?>>
+<head>
+<meta charset="<?php bloginfo( 'charset' ); ?>">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<?php wp_head(); ?>
+</head>
+<body <?php body_class(); ?>>
+<?php wp_body_open(); ?>
+<a class="skip-link screen-reader-text" href="#plaf-main"><?php esc_html_e( 'Skip to content', 'plaf-theme' ); ?></a>
+<div class="plaf-mobile-overlay" id="plafMobileOverlay" onclick="plafCloseMobile()"></div>
+<nav class="mobile-nav" id="plafMobileNav" aria-label="<?php esc_attr_e( 'Mobile', 'plaf-theme' ); ?>">
+<?php
+wp_nav_menu(
+	array(
+		'theme_location' => 'primary',
+		'container'      => false,
+		'menu_class'     => 'nav-menu',
+		'fallback_cb'    => 'plaf_fallback_menu',
+		'depth'          => 1,
+	)
+);
+?>
+<a href="<?php echo esc_url( home_url( '/get-free-advice/' ) ); ?>" class="btn btn-pill btn-primary nav-cta nav-cta--mobile">
+	<?php esc_html_e( 'Get Free Advice', 'plaf-theme' ); ?>
+</a>
+</nav>
+<header class="site-header" id="plafHeader">
+<div class="container site-header__row">
+<?php
+/*
+ * Brand mark. IMPORTANT: the_custom_logo() already prints its own <a class="custom-logo-link">
+ * wrapper. Never wrap it in another <a> — a nested <a><a>...</a></a> is invalid HTML and browsers
+ * will silently reparent the DOM, which is what caused the logo/nav overlap bug in the old markup.
+ * When no custom logo is set, fall back to a single <a class="nav-brand"> text wordmark instead.
+ */
+if ( has_custom_logo() ) :
+	the_custom_logo();
+else :
+	?>
+	<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="nav-brand"><?php bloginfo( 'name' ); ?></a>
+	<?php
+endif;
+?>
+<div class="nav-desktop">
+<?php
+wp_nav_menu(
+	array(
+		'theme_location' => 'primary',
+		'container'      => false,
+		'items_wrap'     => '<ul class="nav-menu">%3$s</ul>',
+		'fallback_cb'    => 'plaf_fallback_menu',
+		'depth'          => 1,
+	)
+);
+?>
+<a href="<?php echo esc_url( home_url( '/get-free-advice/' ) ); ?>" class="btn btn-pill btn-primary nav-cta">
+	<?php esc_html_e( 'Get Free Advice', 'plaf-theme' ); ?>
+</a>
+</div>
+<button class="mobile-menu-btn" onclick="plafToggleMobile()" aria-label="<?php esc_attr_e( 'Toggle menu', 'plaf-theme' ); ?>" aria-expanded="false" aria-controls="plafMobileNav">
+<svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+</button>
+</div>
+</header>
+<main id="plaf-main">

@@ -1,0 +1,100 @@
+<?php if ( ! defined( 'ABSPATH' ) ) exit; ?>
+</main>
+<footer class="site-footer">
+<div class="container footer__grid">
+
+	<div class="footer__col footer__col--brand">
+		<p class="footer__brand"><?php bloginfo( 'name' ); ?></p>
+		<p class="footer__blurb"><?php esc_html_e( 'Free psychic love advice for real relationship questions — thoughtful, judgment-free guidance whenever you need clarity on matters of the heart.', 'plaf-theme' ); ?></p>
+	</div>
+
+	<div class="footer__col">
+		<h3 class="footer__heading"><?php esc_html_e( 'Explore', 'plaf-theme' ); ?></h3>
+		<ul class="footer__links">
+			<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Home', 'plaf-theme' ); ?></a></li>
+			<li><a href="<?php echo esc_url( home_url( '/get-free-advice/' ) ); ?>"><?php esc_html_e( 'Get Free Advice', 'plaf-theme' ); ?></a></li>
+			<li><a href="<?php echo esc_url( home_url( '/love-topics/' ) ); ?>"><?php esc_html_e( 'Love Topics', 'plaf-theme' ); ?></a></li>
+			<li><a href="<?php echo esc_url( home_url( '/our-readers/' ) ); ?>"><?php esc_html_e( 'Our Readers', 'plaf-theme' ); ?></a></li>
+		</ul>
+	</div>
+
+	<div class="footer__col">
+		<h3 class="footer__heading"><?php esc_html_e( 'Resources', 'plaf-theme' ); ?></h3>
+		<ul class="footer__links">
+			<li><a href="<?php echo esc_url( home_url( '/free-session/' ) ); ?>"><?php esc_html_e( 'Free Session', 'plaf-theme' ); ?></a></li>
+			<li><a href="<?php echo esc_url( home_url( '/faq/' ) ); ?>"><?php esc_html_e( 'FAQ', 'plaf-theme' ); ?></a></li>
+			<li><a href="<?php echo esc_url( home_url( '/about/' ) ); ?>"><?php esc_html_e( 'About Us', 'plaf-theme' ); ?></a></li>
+			<?php
+			$plaf_blog_page = get_page_by_path( 'blog' );
+			if ( $plaf_blog_page && 'publish' === $plaf_blog_page->post_status ) :
+				?>
+				<li><a href="<?php echo esc_url( get_permalink( $plaf_blog_page ) ); ?>"><?php esc_html_e( 'Blog', 'plaf-theme' ); ?></a></li>
+				<?php
+			endif;
+			?>
+		</ul>
+	</div>
+
+	<?php
+	/*
+	 * Legal links only render when a matching page actually exists AND is published — a link to a
+	 * draft page is a dead end for a real visitor. As of this redesign the only candidate found in
+	 * the database ("Privacy Policy") is still a draft, and no "Terms & Conditions" page exists at
+	 * all, so this column intentionally renders nothing rather than linking to a 404/draft or a
+	 * hardcoded URL. It will start appearing automatically once a matching page is published.
+	 */
+	$plaf_legal_candidates = array(
+		__( 'Privacy Policy', 'plaf-theme' )      => array( 'privacy-policy', 'privacy' ),
+		__( 'Terms & Conditions', 'plaf-theme' )  => array( 'terms-and-conditions', 'terms-conditions', 'terms-of-service', 'terms' ),
+	);
+	$plaf_legal_links = array();
+	foreach ( $plaf_legal_candidates as $plaf_label => $plaf_slugs ) {
+		foreach ( $plaf_slugs as $plaf_slug ) {
+			$plaf_page = get_page_by_path( $plaf_slug );
+			if ( $plaf_page && 'publish' === $plaf_page->post_status ) {
+				$plaf_legal_links[ $plaf_label ] = get_permalink( $plaf_page );
+				break;
+			}
+		}
+	}
+	if ( ! empty( $plaf_legal_links ) ) :
+		?>
+		<div class="footer__col">
+			<h3 class="footer__heading"><?php esc_html_e( 'Legal', 'plaf-theme' ); ?></h3>
+			<ul class="footer__links">
+				<?php foreach ( $plaf_legal_links as $plaf_label => $plaf_url ) : ?>
+					<li><a href="<?php echo esc_url( $plaf_url ); ?>"><?php echo esc_html( $plaf_label ); ?></a></li>
+				<?php endforeach; ?>
+			</ul>
+		</div>
+		<?php
+	endif;
+
+	if ( is_active_sidebar( 'plaf-footer' ) ) :
+		?>
+		<div class="footer__col"><?php dynamic_sidebar( 'plaf-footer' ); ?></div>
+		<?php
+	endif;
+	?>
+
+</div>
+<div class="container footer__bottom">
+	<p><?php echo esc_html( sprintf( /* translators: %d: current year */ __( '© %d Psychic Love Advice. All rights reserved.', 'plaf-theme' ), (int) date( 'Y' ) ) ); ?></p>
+	<p class="footer__disclaimer"><?php esc_html_e( 'For entertainment purposes only. Must be 18+.', 'plaf-theme' ); ?></p>
+</div>
+</footer>
+<a href="#plaf-main" id="plafBtt" class="back-to-top" aria-label="<?php esc_attr_e( 'Back to top', 'plaf-theme' ); ?>">
+	<svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</a>
+<script>
+(function(){
+	var b = document.getElementById('plafBtt');
+	if ( ! b ) { return; }
+	window.addEventListener('scroll', function(){
+		b.classList.toggle('is-visible', window.scrollY > 400);
+	});
+})();
+</script>
+<?php wp_footer(); ?>
+</body>
+</html>
