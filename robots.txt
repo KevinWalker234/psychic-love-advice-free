@@ -6,4 +6,3 @@ Disallow: /wp-json/
 Disallow: /xmlrpc.php
 
 Sitemap: https://psychic-love-advice-free.com/sitemap.xml
-Sitemap: https://de.psychic-love-advice-free.com/sitemap.xml
