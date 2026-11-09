@@ -1,0 +1,102 @@
+/* Unsent Letter Desk: картка-форма зліва, аркуш паперу справа. Палітра теми plaf (сливовий, лавандовий, золото). */
+.uld{max-width:1160px;margin:0 auto;padding:0 var(--container-pad) var(--space-section)}
+.uld-desk{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:32px;align-items:start}
+.uld-card{background:#fff;border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:26px;box-shadow:var(--shadow-md)}
+.uld-fs{border:0;padding:0;margin:0 0 22px;min-width:0}
+.uld-fs legend{font-family:var(--font-heading);font-weight:700;font-size:1.08rem;color:var(--color-primary);padding:0;margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.uld-num{display:inline-flex;width:26px;height:26px;border-radius:50%;background:var(--color-primary);color:#fff;font-size:.82rem;align-items:center;justify-content:center;font-family:var(--font-body)}
+.uld-hint{font-size:.88rem;color:var(--color-text-light);margin:0 0 10px}
+.uld-rad{position:absolute;opacity:0;width:1px;height:1px}
+.uld-opt{display:block;position:relative}
+.uld-chips{display:flex;flex-wrap:wrap;gap:8px}
+.uld-chips .uld-opt{display:inline-block}
+.uld-chip{display:inline-block;padding:8px 16px;border:1.5px solid var(--color-border);border-radius:var(--radius-pill);font-size:.92rem;font-weight:700;color:var(--color-text);cursor:pointer;background:var(--color-bg);transition:all var(--transition)}
+.uld-chip:hover{border-color:var(--color-secondary)}
+.uld-rad:checked+.uld-chip{background:var(--color-primary);border-color:var(--color-primary);color:#fff}
+.uld-rad:focus-visible+label{outline:2px solid var(--color-secondary);outline-offset:3px}
+.uld-tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.uld-tile{display:grid;grid-template-columns:34px 1fr;grid-template-rows:auto auto;column-gap:10px;padding:12px;border:1.5px solid var(--color-border);border-radius:var(--radius-md);cursor:pointer;background:var(--color-bg);height:100%;transition:all var(--transition)}
+.uld-tile-ic{grid-row:1/3;color:var(--color-secondary);display:flex;align-items:center}
+.uld-tile strong{font-size:.93rem;line-height:1.25;color:var(--color-text)}
+.uld-tile small{font-size:.78rem;color:var(--color-text-light);line-height:1.3}
+.uld-tile:hover{border-color:var(--color-secondary)}
+.uld-rad:checked+.uld-tile{border-color:var(--color-primary);background:var(--color-bg-alt-deep);box-shadow:inset 0 0 0 1px var(--color-primary)}
+.uld-rad:checked+.uld-tile .uld-tile-ic{color:var(--color-primary)}
+.uld-ta{width:100%;font:inherit;font-size:1rem;line-height:1.6;padding:12px 14px;border:1.5px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-bg);color:var(--color-text);resize:vertical;min-height:120px}
+.uld-ta:focus{outline:2px solid var(--color-secondary);outline-offset:1px}
+.uld-ta.is-bad{border-color:var(--color-primary)}
+.uld-count{text-align:right;font-size:.78rem;color:var(--color-text-light)}
+.uld-dial{margin-bottom:14px}
+.uld-dial-top{display:flex;justify-content:space-between;font-size:.9rem}
+.uld-dial-name{font-weight:700}
+.uld-dial-val{color:var(--color-primary);font-weight:700}
+.uld-range{width:100%;accent-color:var(--color-primary);margin:6px 0 0}
+.uld-dial-ends{display:flex;justify-content:space-between;font-size:.74rem;color:var(--color-text-light)}
+.uld-advisors{display:grid;gap:10px}
+.uld-adv{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1.5px solid var(--color-border);border-radius:var(--radius-md);cursor:pointer;background:var(--color-bg)}
+.uld-adv img{width:48px;height:48px;border-radius:50%;object-fit:cover;flex:0 0 48px}
+.uld-adv strong{display:block;color:var(--color-primary);font-family:var(--font-heading)}
+.uld-adv small{display:block;font-size:.8rem;color:var(--color-text-light);line-height:1.35}
+.uld-rad:checked+.uld-adv{border-color:var(--color-primary);background:var(--color-bg-alt-deep);box-shadow:inset 0 0 0 1px var(--color-primary)}
+.uld-go{width:100%}
+.uld-go:disabled{opacity:.7;cursor:wait}
+.uld-err{color:var(--color-primary);font-weight:700;font-size:.9rem;margin:10px 0 0;min-height:0}
+.uld-fine{font-size:.8rem;color:var(--color-text-light);font-style:italic;margin:12px 0 0;text-align:center}
+
+/* Аркуш */
+.uld-paperwrap{position:sticky;top:90px}
+.uld-paper{position:relative;min-height:520px;padding:34px 34px 26px;border-radius:6px 6px var(--radius-md) var(--radius-md);
+  background:#fffdf6 repeating-linear-gradient(180deg,transparent 0,transparent 31px,rgba(107,63,160,.11) 31px,rgba(107,63,160,.11) 32px);
+  border:1px solid #efe3d3;box-shadow:0 18px 44px rgba(139,34,82,.16),0 2px 0 #fff inset;transform:rotate(.35deg)}
+.uld-paper::before{content:"";position:absolute;left:46px;top:0;bottom:0;border-left:1px solid rgba(139,34,82,.22)}
+.uld-paper.is-empty,.uld-paper.is-error{display:flex;align-items:center;justify-content:center;text-align:center}
+.uld-empty{max-width:340px}
+.uld-empty-t{font-family:var(--font-heading);font-style:italic;font-size:1.5rem;color:var(--color-primary);margin:14px 0 8px;line-height:1.25}
+.uld-empty-s{color:var(--color-text-light);font-size:.95rem}
+.uld-seal{display:block;margin:0 auto;filter:drop-shadow(0 4px 6px rgba(139,34,82,.3))}
+.uld-sealwrap{position:absolute;right:22px;top:-20px;animation:uldStamp .5s cubic-bezier(.2,1.4,.4,1) both;transform-origin:center}
+.uld-sealwrap .uld-seal{width:56px;height:56px}
+@keyframes uldStamp{from{transform:scale(1.9) rotate(-18deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
+
+.uld-note{background:#fff3c4;border-radius:4px;padding:12px 16px 12px;margin:0 0 20px 14px;box-shadow:0 6px 14px rgba(0,0,0,.1);transform:rotate(-.8deg);position:relative}
+.uld-note-by{display:block;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--color-secondary);margin-bottom:4px}
+.uld-note-p{margin:0;font-size:.95rem;line-height:1.55;color:var(--color-text)}
+.uld-letter{margin-left:14px;font-family:var(--font-heading);font-style:italic;font-size:1.12rem;line-height:32px;color:#3a1a4a}
+.uld-letter p{margin:0 0 32px;white-space:pre-wrap}
+.is-writing .uld-letter p:last-child::after{content:"";display:inline-block;width:2px;height:1.1em;background:var(--color-primary);margin-left:2px;vertical-align:text-bottom;animation:uldBlink .9s steps(2) infinite}
+@keyframes uldBlink{50%{opacity:0}}
+.uld-check{margin:8px 0 0 14px;background:rgba(255,255,255,.9);border:1px dashed var(--color-secondary);border-radius:var(--radius-md);padding:14px 18px}
+.uld-check h3{font-size:1rem;margin:0 0 6px;font-family:var(--font-body);text-transform:uppercase;letter-spacing:.07em;font-size:.78rem;color:var(--color-secondary)}
+.uld-check ul{margin:0;padding-left:1.1rem;font-size:.92rem;line-height:1.5;color:var(--color-text)}
+.uld-check li{margin-bottom:4px}
+.uld-status{margin:14px 0 0 14px;font-size:.85rem;color:var(--color-text-light);font-style:italic}
+.uld-actions{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 0 14px}
+.uld-tweaks{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0 0 14px}
+.uld-tweaks-l{font-size:.82rem;font-weight:700;color:var(--color-text-light)}
+.uld-tweak{font:inherit;font-size:.82rem;font-weight:700;padding:5px 13px;border-radius:var(--radius-pill);border:1.5px solid var(--color-border);background:#fff;color:var(--color-secondary);cursor:pointer}
+.uld-tweak:hover{border-color:var(--color-secondary)}
+
+/* Шухляда */
+.uld-drawer{margin-top:44px}
+.uld-drawer h2{margin-bottom:6px}
+.uld-drawer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.uld-env{background:#fffdf6;border:1px solid #efe3d3;border-radius:var(--radius-md);padding:16px;box-shadow:var(--shadow-sm)}
+.uld-env-h strong{display:block;color:var(--color-primary);font-family:var(--font-heading)}
+.uld-env-h span{font-size:.8rem;color:var(--color-text-light)}
+.uld-env-b{font-family:var(--font-heading);font-style:italic;font-size:.95rem;margin:10px 0;white-space:pre-wrap;max-height:9em;overflow:auto}
+.uld-env.is-sealed .uld-env-b{filter:blur(6px);user-select:none;max-height:5em;overflow:hidden}
+.uld-env-s{font-size:.8rem;color:var(--color-text-light);margin:0 0 10px}
+.uld-env-a{display:flex;gap:8px;flex-wrap:wrap}
+
+@media(max-width:899px){
+  .uld-desk{grid-template-columns:minmax(0,1fr)}
+  .uld-paperwrap{position:static}
+  .uld-paper{transform:none;padding:28px 20px 22px;min-height:360px}
+  .uld-paper::before{left:30px}
+  .uld-note,.uld-letter,.uld-check,.uld-status,.uld-actions,.uld-tweaks{margin-left:8px}
+}
+@media(max-width:520px){
+  .uld-card{padding:20px 16px}
+  .uld-tiles{grid-template-columns:minmax(0,1fr)}
+}
+@media(prefers-reduced-motion:reduce){.uld-sealwrap,.is-writing .uld-letter p:last-child::after{animation:none}}
